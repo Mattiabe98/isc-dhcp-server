@@ -30,6 +30,7 @@ spec:
       labels:
         app: dhcp-server
     spec:
+      hostNetwork: true
       containers:
         - name: dhcp-server
           image: {{ .Values.global.registry }}{{ .Values.image.repository }}:{{ tpl .Values.image.tag . }}
