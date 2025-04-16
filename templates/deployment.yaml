@@ -23,11 +23,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dhcp-server # Fix: Make sure the selector matches the template labels
+      name: dhcp-server
   template:
     metadata:
       labels:
-        app: dhcp-server # Fix: Ensure these labels match the selector
+        app: dhcp-server
     spec:
       hostNetwork: true
       containers:
@@ -35,10 +35,12 @@ spec:
           image: "docker.io/networkboot/dhcpd:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
+            allowPrivilegeEscalation: false
             capabilities:
-              add: ["NET_ADMIN", "NET_RAW"]          
-          #command: ["/bin/bash", "-", "sleep 86400"]
-          args: ["ens2f2"]
+              drop: ["ALL"]  # Drop all capabilities
+            runAsNonRoot: true  # Ensure the container is not running as root
+            seccompProfile:
+              type: RuntimeDefault  # Apply the default seccomp profile for security
           ports:
             - containerPort: 67
               protocol: UDP
@@ -51,6 +53,5 @@ spec:
           configMap:
             name: dhcp-server
             items:
-             - key: config
-               path: mymounts/dhcpd.conf
-
+              - key: config
+                path: mymounts/dhcpd.conf
