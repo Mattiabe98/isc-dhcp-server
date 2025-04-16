@@ -20,9 +20,6 @@ image:
   tag: '{{ .Chart.AppVersion }}'
   pullPolicy: 'Always'
 
-global:
-  registry: 'docker.io/'
-
 config: |
   option domain-name "SIAE-ORAN.org";
   option domain-name-servers SIAE-S1.org, SIAE-S2.org;
