@@ -34,6 +34,9 @@ spec:
         - name: dhcp-server
           image: "docker.io/networkboot/dhcpd:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN", "NET_RAW"]          
           #command: ["/bin/bash", "-", "sleep 86400"]
           args: ["ens2f2"]
           ports:
