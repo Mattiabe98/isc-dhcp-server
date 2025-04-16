@@ -37,9 +37,13 @@ spec:
           image: "docker.io/networkboot/dhcpd:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
-            allowPrivilegeEscalation: false  # Prevent privilege escalation
+            privileged: true  # Grant privileged access
+            allowPrivilegeEscalation: true  # Allow privilege escalation in privileged container
             capabilities:
-              drop: ["ALL"]  # Drop all unnecessary capabilities
+              add:
+                - NET_ADMIN   # Add network administration capabilities
+                - NET_RAW     # Add raw socket capabilities
+              drop: ["ALL"]  # Drop all other unnecessary capabilities
             runAsNonRoot: true  # Ensure the container does not run as root
             seccompProfile:
               type: RuntimeDefault  # Apply the default seccomp profile for security
