@@ -34,6 +34,7 @@ spec:
         - name: dhcp-server
           image: "docker.io/networkboot/dhcpd:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: ["ens2f2v1"]
           securityContext:
             privileged: true  # Grant privileged access
             allowPrivilegeEscalation: true  # Allow privilege escalation in privileged container
