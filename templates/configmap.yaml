@@ -29,10 +29,15 @@ data:
     ddns-update-style none;
     
     authoritative;
+
+    host allowed-vf {
+      hardware ethernet 1c:a0:ef:87:68:b6;
+      fixed-address 10.22.17.143;
+    }
     
+    deny unknown-clients;    
     # IP range for ORAN network
     subnet 10.22.17.128 netmask 255.255.255.224 {
-      range 10.22.17.143 10.22.17.144;
       option routers 10.22.17.1;
       option broadcast-address 10.22.17.159;
       option time-offset 7200;
