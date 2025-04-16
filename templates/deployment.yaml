@@ -33,7 +33,7 @@ spec:
       hostNetwork: true
       containers:
         - name: dhcp-server
-          image: {{ .Values.global.registry }}{{ .Values.image.repository }}:{{ tpl .Values.image.tag . }}
+          image: "docker.io/networkboot/dhcpd:latest'
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           #command: ["/bin/bash", "-", "sleep 86400"]
           args: ["ens2f2"]
