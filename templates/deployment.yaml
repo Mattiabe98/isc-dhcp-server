@@ -23,22 +23,24 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dhcp-server  # Match the label here
+      app: dhcp-server
   template:
     metadata:
       labels:
-        app: dhcp-server  # Match the label here
+        app: dhcp-server
     spec:
-      hostNetwork: true
+      hostNetwork: true  # Required for DHCP server to access the host network
+      securityContext:
+        runAsNonRoot: true  # Ensure the container does not run as root
       containers:
         - name: dhcp-server
           image: "docker.io/networkboot/dhcpd:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
-            allowPrivilegeEscalation: false
+            allowPrivilegeEscalation: false  # Prevent privilege escalation
             capabilities:
-              drop: ["ALL"]  # Drop all capabilities
-            runAsNonRoot: true  # Ensure the container is not running as root
+              drop: ["ALL"]  # Drop all unnecessary capabilities
+            runAsNonRoot: true  # Ensure the container does not run as root
             seccompProfile:
               type: RuntimeDefault  # Apply the default seccomp profile for security
           ports:
