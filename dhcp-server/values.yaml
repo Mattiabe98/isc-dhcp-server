@@ -24,7 +24,7 @@ global:
   registry: ''
 
 config: |
-  INTERFACES=
+  INTERFACES=ens2f2
   option domain-name "SIAE-ORAN.org";
   option domain-name-servers SIAE-S1.org, SIAE-S2.org;
   
