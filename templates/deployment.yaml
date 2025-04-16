@@ -23,12 +23,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: dhcp-server
-      release: {{ .Release.Name }}
+      app: dhcp-server # Fix: Make sure the selector matches the template labels
   template:
     metadata:
       labels:
-        app: dhcp-server
+        app: dhcp-server # Fix: Ensure these labels match the selector
     spec:
       hostNetwork: true
       containers:
@@ -39,7 +38,6 @@ spec:
           args: ["ens2f2"]
           ports:
             - containerPort: 67
-              port: 67
               protocol: UDP
           volumeMounts:
             - name: dhcp-server
@@ -52,3 +50,4 @@ spec:
             items:
              - key: config
                path: mymounts/dhcpd.conf
+
