@@ -21,7 +21,7 @@ image:
   pullPolicy: 'Always'
 
 global:
-  registry: ''
+  registry: 'docker.io/'
 
 config: |
   option domain-name "SIAE-ORAN.org";
