@@ -19,4 +19,5 @@ metadata:
   labels:
     {{- include "dhcp-server.release_labels" . | indent 4 }}
 data:
-  config: | {{ .Values.config | indent 4 }}
+  config: |
+    {{ .Values.config | indent 4 }}
