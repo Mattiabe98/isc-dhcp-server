@@ -20,33 +20,4 @@ image:
   tag: '{{ .Chart.AppVersion }}'
   pullPolicy: 'Always'
 
-config: |
-  option domain-name "SIAE-ORAN.org";
-  option domain-name-servers SIAE-S1.org, SIAE-S2.org;
-  
-  default-lease-time 600;
-  max-lease-time 7200;
-  
-  ddns-update-style none;
-  
-  authoritative;
-  
-  # IP range for ORAN network
-  subnet 10.22.17.128 netmask 255.255.255.224 {
-    range 10.22.17.143 10.22.17.144;
-    option routers 10.22.17.1;
-    option broadcast-address 10.22.17.159;
-    option time-offset 7200;
-    option subnet-mask 255.255.255.224;
-    option domain-name-servers 10.99.99.11, 10.99.99.12;
-    default-lease-time 600;
-    max-lease-time 86400;
-  
-    option vendor-encapsulated-options 81:04:0A:16:11:96;
-  
-    # OPTION 63
-    # option vendor-specific-information "SIAE";
-  }
-
-
 
