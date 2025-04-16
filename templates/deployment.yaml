@@ -36,6 +36,7 @@ spec:
           image: {{ .Values.global.registry }}{{ .Values.image.repository }}:{{ tpl .Values.image.tag . }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           #command: ["/bin/bash", "-", "sleep 86400"]
+          args: ["ens2f2"]
           ports:
             - containerPort: 67
               port: 67
