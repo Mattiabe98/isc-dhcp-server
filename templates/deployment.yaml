@@ -23,11 +23,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: dhcp-server
+      app: dhcp-server  # Match the label here
   template:
     metadata:
       labels:
-        app: dhcp-server
+        app: dhcp-server  # Match the label here
     spec:
       hostNetwork: true
       containers:
@@ -55,3 +55,4 @@ spec:
             items:
               - key: config
                 path: mymounts/dhcpd.conf
+
