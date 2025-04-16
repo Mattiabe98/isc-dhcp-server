@@ -35,7 +35,6 @@ config: |
   authoritative;
   
   # IP range for ORAN network
-  #
   subnet 10.22.17.128 netmask 255.255.255.224 {
     range 10.22.17.143 10.22.17.144;
     option routers 10.22.17.1;
