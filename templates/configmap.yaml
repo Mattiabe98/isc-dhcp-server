@@ -30,9 +30,14 @@ data:
     
     authoritative;
 
-    host allowed-vf {
+    host n77-1 {
       hardware ethernet 1c:a0:ef:87:68:b6;
       fixed-address 10.22.17.143;
+    }
+    
+    host n77-0 {
+      hardware ethernet 1c:a0:ef:87:68:b9;
+      fixed-address 10.22.17.144;
     }
     
     deny unknown-clients;    
